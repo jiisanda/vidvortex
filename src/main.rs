@@ -20,4 +20,10 @@ fn main() {
             println!("{:?}", file);
         }
     }
+
+    if matches.opt_present("t") {
+        println!("Total duration of all video files: {}", 
+                 file::total_duration(Path::new(&path))
+        );
+    }
 }
