@@ -1,0 +1,1 @@
+alias vidvortex='cargo run --'
