@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 walkdir = { version = "2.4.0", features = [] }
 mime_guess = "2.0.4"
+getopts = "0.2.21"
