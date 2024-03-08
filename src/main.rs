@@ -15,7 +15,6 @@ fn main() {
     let path = matches.opt_str("p").unwrap_or_else(|| ".".to_string());
 
     if matches.opt_present("l") {
-        println!("path: {:?}", &path);
         let video_files = file::get_video_files(Path::new(&path));
         for file in video_files {
             println!("{:?}", file);

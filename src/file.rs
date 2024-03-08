@@ -33,7 +33,7 @@ pub fn get_video_length(file_path: &Path) -> Result<(f64, String), Box<dyn Error
     Ok((duration, duration_str))
 }
 
-pub fn get_video_files(dir: &Path) -> Vec<(String, String, Result<(f64, String), Box<dyn Error>>)> {
+pub fn get_video_files(dir: &Path) -> Vec<(String, String, String)> {
     let vec = WalkDir::new(dir)
         .into_iter()                    // converts walkdir instance to iterator
         .filter_map(Result::ok)           // filter: entries that could be read without errors
@@ -46,7 +46,7 @@ pub fn get_video_files(dir: &Path) -> Vec<(String, String, Result<(f64, String),
             let path = e.path();
             let metadata = fs::metadata(path).ok()?;
             let size_mb = metadata.len() as f64 / 1_000_000.0;
-            let duration = get_video_length(path);
+            let (_, duration) = get_video_length(path).ok()?;
             Some((path.to_string_lossy().into_owned(), format!("{:.2} MB", size_mb), duration))
         })
         .collect();
