@@ -52,3 +52,23 @@ pub fn get_video_files(dir: &Path) -> Vec<(String, String, String)> {
         .collect();
     vec
 }
+
+
+pub fn total_duration(path: &Path) -> String {
+    let video_files = get_video_files(Path::new(path));
+    let total_sec: f64 = video_files.iter()
+        .map(|(_, _, duration)| {
+            let time_parts: Vec<&str> = duration.split(":").collect();
+            let hrs: f64 = time_parts[0].parse().unwrap();
+            let min: f64 = time_parts[1].parse().unwrap();
+            let sec: f64 = time_parts[2].parse().unwrap();
+            hrs * 3600.0 + min * 60.0 + sec
+        })
+        .sum();
+
+    let hrs = (total_sec / 3600.0).floor();
+    let min = (total_sec % 3600.0 / 60.0).floor();
+    let sec = total_sec % 60.0;
+
+    format!("{:02}:{:02}:{:.2}", hrs as u64, min as u64, sec)
+}
