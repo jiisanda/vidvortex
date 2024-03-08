@@ -1,4 +1,5 @@
 use std::path::Path;
+use std::process;
 
 mod cli;
 mod file;
@@ -12,6 +13,12 @@ fn main() {
         return;
     }
 
+    if matches.opt_present("v") {
+        println!("Version: {}", env!("CARGO_PKG_VERSION"));
+        println!("{}", env!("CARGO_PKG_DESCRIPTION"));
+        process::exit(0);
+    }
+
     let path = matches.opt_str("p").unwrap_or_else(|| ".".to_string());
 
     if matches.opt_present("l") {
@@ -22,7 +29,7 @@ fn main() {
     }
 
     if matches.opt_present("t") {
-        println!("Total duration of all video files: {}", 
+        println!("Total duration of all video files: {}",
                  file::total_duration(Path::new(&path))
         );
     }

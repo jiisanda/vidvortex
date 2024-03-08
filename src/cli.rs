@@ -12,6 +12,7 @@ pub fn parse_args() -> (String, Options, getopts::Matches) {
 
     let mut opts = Options::new();
     opts.optflag("h", "help", "list of all available arguments");
+    opts.optflag("v", "version", "check version of vidvortex");
     opts.optflag("l", "list", "list video files in the current directory and subdirectories");
     opts.optopt("p", "path", "set the path to search for video files, default Current directory", "PATH");
     opts.optflag("t", "total", "show total duration of all video files");

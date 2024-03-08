@@ -2,6 +2,8 @@
 name = "vidvortex"
 version = "0.1.0"
 edition = "2021"
+description = "Command line utility for retrieving total video length in directory and its subdirectories and do more with videos iguess🤔"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
