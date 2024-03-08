@@ -43,12 +43,10 @@ Build the project
 vidvortex
 ```
 
-If not using GitBash, you can run the following command to build the project
+If not using GitBash, you can run the following command to build the project and add the binary to your PATH.
 ```bash
 cargo build --release
 ```
-
-### Add the binary to PATH
 ```bash
 export PATH=$PATH:/path/to/vidvortex/target/release
 ```
